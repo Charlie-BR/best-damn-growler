@@ -5,10 +5,12 @@ enable :sessions
 
 before do
 	session[:growlHistory] ||= []
+	@growlHistory = session[:growlHistory]
 end
 
 get '/' do
-	@name = session[:name]
+# 	# @name = session[:name]
+	# @newGrowl = session[:newGrowl]
 	erb :homepage
 end
 
@@ -17,17 +19,14 @@ get '/newGrowl' do
 end
 
 # Add a new growl
-post '/newGrowl' do
+post '/homepage' do
 	session[:growlHistory] << params[:newGrowl]
-	@newGrowl = params[:newGrowl]
-	erb :homepage
-end
+	# @newGrowl = params[:newGrowl]
+	# erb :homepage
+	redirect "/homepage"
+end 
 
 get '/homepage' do
-	@growlHistory = session[:growlHistory]
+	# @growlHistory = session[:growlHistory]
 	erb :homepage
-end
-
-post '/homepage' do
-	puts :growlHistory
 end
