@@ -5,8 +5,17 @@ before do
 
 end
 
+enable :sessions
+
 #Routes
 get '/' do
-	erb :index
+	@name = session[:name]
+	# "Hello, #{session[:name]}"
+	erb :homepage
 end
 
+get '/newGrowl' do	
+	@name = session[:name]
+
+	erb :newGrowl
+end
